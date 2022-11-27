@@ -3,13 +3,21 @@ import React, { useState } from "react";
 function TodoList() {
 
     const [newTask, setNewTask] = useState("");
-    const [taskList, setTaskList] = useState([]);
+    const [taskList, setTaskList] = useState(new Set());
 
     function handleEnter(key) {
         if (key == "Enter") {
-            setTaskList(taskList.concat(newTask));
+            let newTaskList = taskList.add(newTask);
+            setTaskList(newTaskList);
             setNewTask("");
         }
+    }
+
+    function deleteTask(e) {
+        let toBeDeleted = e.target.parentElement.textContent;
+        let newTaskList = new Set(taskList);
+        newTaskList.delete(toBeDeleted);
+        setTaskList(newTaskList);
     }
 
     return (
@@ -20,11 +28,15 @@ function TodoList() {
                 onChange={(e) => setNewTask(e.target.value)}
                 onKeyDown={(e) => handleEnter(e.key)}
             />
-            <ul>{taskList.map((task, index) => {
-                return (
-                    <li className="task" key={index}>
-                        {task} <i className="fa-solid fa-trash-can"></i>
-                    </li>
+            <ul>
+                {[...taskList].map((task, index) => {
+                    return (
+                        <li className="task" key={index}>
+                            {task} 
+                            <i className="fa-solid fa-trash-can"
+                            onClick={(e) => deleteTask(e)}
+                            ></i>
+                        </li>
                     )
                 })}
             </ul>
