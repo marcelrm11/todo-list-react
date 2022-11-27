@@ -13,3 +13,12 @@ ul {
     width: 70%;
     padding-left: 0;
 }
+.delete {
+    opacity: 0;
+    transition: 0.4s;
+    color: darkred;
+    cursor: pointer;
+}
+.task:hover .delete {
+    opacity: 1;
+}

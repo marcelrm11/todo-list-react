@@ -7,6 +7,9 @@ function TodoList() {
 
     function handleEnter(key) {
         if (key == "Enter") {
+            if (taskList.has(newTask)) {
+                console.log("repeated");
+            }
             let newTaskList = taskList.add(newTask);
             setTaskList(newTaskList);
             setNewTask("");
@@ -33,7 +36,7 @@ function TodoList() {
                     return (
                         <li className="task" key={index}>
                             {task} 
-                            <i className="fa-solid fa-trash-can"
+                            <i className="fa-solid fa-trash-can delete"
                             onClick={(e) => deleteTask(e)}
                             ></i>
                         </li>
