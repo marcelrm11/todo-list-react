@@ -42,6 +42,7 @@ function TodoList() {
                     )
                 })}
             </ul>
+            <p>{taskList.size}{' '}{taskList.size === 1 ? "task" : "tasks"} in the list.</p>
         </div>
     )
 }
