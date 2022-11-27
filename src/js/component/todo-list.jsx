@@ -4,12 +4,11 @@ function TodoList() {
 
     const [newTask, setNewTask] = useState("");
     const [taskList, setTaskList] = useState(new Set());
+    const [hasTask, setHasTask] = useState(false);
 
     function handleEnter(key) {
         if (key == "Enter") {
-            if (taskList.has(newTask)) {
-                console.log("repeated");
-            }
+            setHasTask(taskList.has(newTask))
             let newTaskList = taskList.add(newTask);
             setTaskList(newTaskList);
             setNewTask("");
@@ -30,7 +29,7 @@ function TodoList() {
                 value={newTask}
                 onChange={(e) => setNewTask(e.target.value)}
                 onKeyDown={(e) => handleEnter(e.key)}
-            />
+            />{hasTask ? <span>Already in the list!</span> : ""}
             <ul>
                 {[...taskList].map((task, index) => {
                     return (
