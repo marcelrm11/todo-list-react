@@ -1,6 +1,6 @@
-# PROJECT NAME
+# To-Do List with React
 
-To-Do List connected to a server API.
+To-Do List connected to a server API built with React.
 
 > This project combines reusable React components and REST API methods (GET, POST, PUT, DELETE). The user can save to-do lists in a remote server.
 
