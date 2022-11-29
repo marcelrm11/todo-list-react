@@ -1,41 +1,45 @@
-# Hello World with React boilerplate
-<p>
-  <a href="https://gitpod.io#https://github.com/4GeeksAcademy/react-hello.git"><img src="https://raw.githubusercontent.com/4GeeksAcademy/react-hello/master/open-in-gitpod.svg?sanitize=true" />
-  </a>
-</p>
+# PROJECT NAME
 
-This template is similar to create-react-app but it's meant for 4Geeks Academy students.
+To-Do List connected to a server API.
 
-##### Download the boilerplate using git
+> This project combines reusable React components and REST API methods (GET, POST, PUT, DELETE). The user can save to-do lists in a remote server.
+
+## Background
+
+This project is part of the learning path in 4Geeks Academy Spain. First step using React with REST API.
+
+## Usage
+
+The main features of this project are the usage of React reusable components and async/await functions to interact with the server API. It also uses React hook useState.
+
+## API/Component
+
+The API used is explained in detail [here](http://assets.breatheco.de/apis/fake/todos/).
+The components are structured as follows:
+- Home: in this particular project it holds just one child component.
+- TodoList: this component holds the main functions, states and controlled sub-components.
+- CustomInput: is a reusable input component used in 2 places.
+- SetList: is a somehow reusable component that creates a list from a Set.
+- DeleteItem: is a sub-component of SetList which defines the action available for each item of the SetList (in this case, delete).
+
+## Installation
+
+Upon downloading the project, install and start scripts are automatically launched. It can be visualized in the browser.
+To run the project at any time:
 
 ```
-$ git clone https://github.com/4GeeksAcademy/react-hello.git
-$ cd react-hello
+  npm run start
 ```
 
-##### and install the npm package:
-```
-$ npm install
-```
+## Contact info
 
-## Start coding!
+You can contact me at [marcelrm11@gmail.com](mailto:marcelrm11@gmail.com).
 
-For Windows, Mac, Linux or Gitpod, start the webpack server with live reload:
-- `$ npm run start`
+## License
 
-You can update the `styles/index.css` or `js/index.js` depending on your needs.
-Add more files into your, `./src/js/components` or styles folder as you need them.
+[MIT](https://opensource.org/licenses/MIT)
 
-## Publish your website!
+## Credits
 
-This boilerplate is 100% compatible with the free [github pages](https://pages.github.com/) and [vercel](https://vercel.com/) hosting.
-
-It takes just 2 minutes to deploy, [click here to start the process](https://github.com/4GeeksAcademy/react-hello/blob/master/docs/DEPLOY.md).
-
-## Other features
-
-- Automatic Code Formatting: Use of [Prettier](https://prettier.io/) for automatic code indentation and formatting.
-- Error reporting: Use of [eslint](https://eslint.org/) for better error reporting.
-- Hot Deploy: Use of [Webpack Development Server](https://webpack.js.org/configuration/dev-server/) for hot deploy and live reload.
-- One-command publish of the code to github pages with `npm run deploy:github`.
-- Babel 7 (really fast).
+The React boilerplate used for this project was developed by 4Geeks Academy.
+You can find it in [this repo](https://github.com/4GeeksAcademy/react-hello.git).
