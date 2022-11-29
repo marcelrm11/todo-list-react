@@ -19,6 +19,15 @@ ul {
     color: darkred;
     cursor: pointer;
 }
+.text-delete {
+    color: darkred;
+    margin-top: 1em;
+    font-weight: bold;
+}
+.text-error {
+    color: red;
+    font-weight: bold;
+}
 .task:hover .delete {
     opacity: 1;
 }

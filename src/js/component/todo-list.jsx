@@ -8,6 +8,8 @@ function TodoList() {
     const [taskList, setTaskList] = useState(new Set());
     const [hasTask, setHasTask] = useState(false);
     const [username, setUsername] = useState("");
+    const [userDeleted, setUserDeleted] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("");
     const [myUsersList, setUsersList] = useState(new Set());
 
     function handleUsername(key) {
@@ -16,7 +18,7 @@ function TodoList() {
         }
     }
 
-    function handleEnter(key) {
+    function addNewTask(key) {
         if (key == "Enter") {
             let exists;
             for (const taskObj of taskList) {
@@ -46,7 +48,12 @@ function TodoList() {
             }
         }
         if (newTaskList.size === 0) {
-            deleteUser(username);
+            deleteUser(username); // list cannot be empty
+            setUserDeleted(true);
+            setTimeout(() => {
+                setUserDeleted(false);
+                setUsername("");
+            }, 3000);
         } else {
             updateApiList(username, newTaskList);
         }
@@ -54,55 +61,74 @@ function TodoList() {
     }
 
     async function createUser(username) {
-        let response = await fetch(`https://assets.breatheco.de/apis/fake/todos/user/${username}`, {
-            method: "POST",
-            body: "[]",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        let data = await response.json()
-        console.log(data);
-        getUserTodoList(username);
-        // .catch(error => console.log(error));
+        try {
+            let response = await fetch(`https://assets.breatheco.de/apis/fake/todos/user/${username}`, {
+                method: "POST",
+                body: "[]",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            console.log(response);
+            let data = await response.json()
+            // if (!response.ok) setErrorMsg(data.msg)
+            console.log(data);
+        } catch(error) {
+            console.log(error);
+            setErrorMsg(error);
+        } finally {
+            getUserTodoList(username);
+        }
     }
 
     async function getUserTodoList(username) {
-        let response = await fetch(`https://assets.breatheco.de/apis/fake/todos/user/${username}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
+        try {
+            let response = await fetch(`https://assets.breatheco.de/apis/fake/todos/user/${username}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            let data = await response.json();
+            console.log(data)
+            let myTaskList = new Set();
+            for (const task of data) {
+                myTaskList.add(task);
             }
-        })
-        let data = await response.json();
-        console.log(data)
-        let myTaskList = new Set();
-        for (const task of data) {
-            myTaskList.add(task);
+            setTaskList(myTaskList);
+        } catch(error) {
+            console.log(error);
         }
-        setTaskList(myTaskList);
+
     }
 
-    function updateApiList(username, newList) {
-        fetch(`https://assets.breatheco.de/apis/fake/todos/user/${username}`, {
-            method: "PUT",
-            body: JSON.stringify([...newList]),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        .then(response => response.json())
-        .then(data => console.log(data.result))
-        .catch(error => console.log(error))
+    async function updateApiList(username, newList) {
+        try {
+            let response = await fetch(`https://assets.breatheco.de/apis/fake/todos/user/${username}`, {
+                method: "PUT",
+                body: JSON.stringify([...newList]),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            let data = await response.json();
+            console.log(data);
+        } catch(error) {
+            console.log(error);
+        }
     }
 
-    function deleteUser(username) {
-        fetch(`https://assets.breatheco.de/apis/fake/todos/user/${username}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
+    async function deleteUser(username) {
+        try {
+            await fetch(`https://assets.breatheco.de/apis/fake/todos/user/${username}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -111,7 +137,7 @@ function TodoList() {
 
             <CustomInput 
                 type={"text"}
-                placeholder={"username"}
+                placeholder={"find or create user"}
                 value={username}
                 onChange={setUsername}
                 onKeyDown={handleUsername}
@@ -124,10 +150,12 @@ function TodoList() {
                 placeholder={"add new task"}
                 value={newTask}
                 onChange={setNewTask}
-                onKeyDown={handleEnter}
+                onKeyDown={addNewTask}
             />
             
             {hasTask ? <span>Already in the list!</span> : ""}
+            {userDeleted ? <span className="text-delete">User {username} was deleted!</span> : ""}
+            <h6 className="text-error">{errorMsg}</h6>
 
             <ul>
                 <SetList 
