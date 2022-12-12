@@ -1,14 +1,7 @@
 import React from "react";
 
-function DeleteItem(props) {
-    function handleClick(e) {
-        props.onClick(e);
-    }
-    return (
-        <i className={props.iconClass}
-            onClick={(e) => handleClick(e)}
-        ></i>
-    )
+function DeleteItem({ iconClass, handleClick }) {
+  return <i className={iconClass} onClick={handleClick}></i>;
 }
 
 export default DeleteItem;
