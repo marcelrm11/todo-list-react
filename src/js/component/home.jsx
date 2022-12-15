@@ -151,7 +151,7 @@ function Home() {
 
   return (
     <div>
-      <TodoList props={myProps} />
+      <TodoList {...myProps} />
     </div>
   );
 }
