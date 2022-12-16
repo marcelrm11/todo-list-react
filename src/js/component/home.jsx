@@ -9,7 +9,7 @@ function Home() {
   const [username, setUsername] = useState("");
   const [userDeleted, setUserDeleted] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [myUsersList, setUsersList] = useState(new Set());
+  // const [myUsersList, setUsersList] = useState(new Set());
 
   const myProps = {
     username,
@@ -35,7 +35,9 @@ function Home() {
     if (key == "Enter") {
       let exists;
       for (const taskObj of taskList) {
-        if (taskObj.label === newTask) {
+        if (
+          taskObj.label.toLowerCase().trim() === newTask.toLowerCase().trim()
+        ) {
           exists = true;
           break;
         }
@@ -55,8 +57,10 @@ function Home() {
     let taskLabel = e.target.parentElement.textContent;
     let newTaskList = new Set(taskList);
     for (const taskObj of newTaskList) {
-      if (taskObj.label === taskLabel) {
-        // could be improved with trim and case insensitivity
+      // need to compare because method .has() doesn't work on objects, task is object
+      if (
+        taskObj.label.toLowerCase().trim() === taskLabel.toLowerCase().trim()
+      ) {
         newTaskList.delete(taskObj);
         break;
       }
