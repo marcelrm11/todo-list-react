@@ -42,7 +42,8 @@ function TodoList({
         <SetList set={taskList} itemAction={(e) => deleteTask(e)} />
       </ul>
       <p>
-        {taskList.size} {taskList.size === 1 ? "task" : "tasks"} in the list.
+        {taskList.length || "no"} {taskList.length === 1 ? "task" : "tasks"} in
+        the list.
       </p>
     </div>
   );
