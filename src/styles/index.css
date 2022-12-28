@@ -1,33 +1,76 @@
+:root {
+  --dark-bg-color: #150f11;
+  --second-bg-color: #324e40;
+  --light-bg-color: #9fab69;
+  --light-accent-color: #f2e5d5;
+  --dark-accent-color: #a6654e;
+  --delete-color: rgb(117, 0, 0);
+}
+html,
+body {
+  background-color: var(--second-bg-color);
+  color: var(--dark-accent-color);
+  font-family: "Mukta", sans-serif;
+}
+h1 {
+  margin: 0.5em 0;
+  font-weight: 800;
+}
+h4 {
+  font-weight: 600;
+}
+#username-welcome {
+  color: var(--light-accent-color);
+}
+input {
+  background-color: var(--second-bg-color);
+  color: var(--light-accent-color);
+  /* margin-top: 0.1em; */
+  margin-bottom: 0.35em;
+  padding: 0.25em 1em;
+  border-radius: 0.25em;
+  font-weight: 200;
+  letter-spacing: 0.025em;
+}
+input::placeholder {
+  color: rgb(165, 164, 164);
+}
+label {
+  font-weight: 500;
+}
 .task {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: bisque;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    padding: 1em 3em;
-    margin: 0.5em 0;
-    width: 100%;
-    list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--light-bg-color);
+  color: var(--dark-bg-color);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  padding: 1em 3em;
+  margin: 0.5em 0;
+  width: 100%;
+  list-style-type: none;
+  font-weight: 500;
 }
 ul {
-    width: 70%;
-    padding-left: 0;
+  width: 70%;
+  padding-left: 0;
+  margin-top: 0.75em;
 }
 .delete {
-    opacity: 0;
-    transition: 0.4s;
-    color: darkred;
-    cursor: pointer;
+  opacity: 0;
+  transition: 0.4s;
+  color: var(--delete-color);
+  cursor: pointer;
 }
 .text-delete {
-    color: darkred;
-    margin-top: 1em;
-    font-weight: bold;
-}
-.text-error {
-    color: red;
-    font-weight: bold;
+  color: var(--delete-color);
+  margin-top: 1em;
+  font-weight: bold;
 }
 .task:hover .delete {
-    opacity: 1;
+  opacity: 1;
+}
+#tasks-left {
+  font-weight: 600;
 }
