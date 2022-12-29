@@ -35,7 +35,7 @@ function TodoList({
         id="newtask-input"
         label="New task"
         type="text"
-        placeholder="add new task"
+        placeholder="type new task"
         value={newTask}
         changeAction={(e) => setNewTask(e.target.value)}
         keyAction={addNewTask}

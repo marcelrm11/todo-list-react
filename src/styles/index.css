@@ -47,10 +47,11 @@ label {
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   padding: 1em 3em;
-  margin: 0.5em 0;
-  width: 100%;
+  margin: 0.5em auto;
+  width: min(100%, 500px);
   list-style-type: none;
   font-weight: 500;
+  border-radius: 0.7em;
 }
 ul {
   width: 70%;
