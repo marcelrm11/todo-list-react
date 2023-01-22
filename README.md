@@ -16,11 +16,12 @@ The main features of this project are the usage of React reusable components and
 
 The API used is explained in detail [here](http://assets.breatheco.de/apis/fake/todos/).
 The components are structured as follows:
-- Home: in this particular project it holds just one child component.
+- Home: state is managed with a TasksReducer defined here and TodoList is its only child.
 - TodoList: this component holds the main functions, states and controlled sub-components.
 - CustomInput: is a reusable input component used in 2 places.
 - SetList: is a somehow reusable component that creates a list from a Set.
 - DeleteItem: is a sub-component of SetList which defines the action available for each item of the SetList (in this case, delete).
+- API CRUD functions are implemented and exported from a separate file.
 
 ## Installation
 
